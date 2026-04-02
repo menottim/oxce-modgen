@@ -2,6 +2,12 @@
 
 A Claude Code skill for generating [OpenXcom Extended (OXCE)](https://github.com/MeridianOXC/OpenXcom) mods from natural language descriptions.
 
+## Background
+
+[OpenXcom](https://github.com/MeridianOXC/OpenXcom) is an open-source reimplementation of the classic 1994 strategy games __UFO: Enemy Unknown__ and __X-COM: Terror From The Deep__. The Extended (OXCE) fork adds a massive data-driven modding layer — most game behavior is controlled by YAML rulesets that can be overridden without touching C++.
+
+The [OXCE mod community on mod.io](https://mod.io/g/openxcom) hosts 400+ mods ranging from single-file balance tweaks (under 1 KB) to total conversions like the 1 GB Warhammer 40K mod. This tool targets the long tail — the YAML-only mods that make up the majority of the ecosystem.
+
 ## What It Does
 
 Invoke `/modgen` in Claude Code with a description like "make plasma weapons more expensive but more accurate" and it will:
