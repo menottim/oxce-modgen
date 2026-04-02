@@ -5,6 +5,12 @@ description: >
   Use when the user says /modgen, asks to create an OXCE mod, or wants to
   modify OpenXcom game balance, items, research, crafts, or facilities.
   Fetches live vanilla stats, generates YAML rulesets, validates output.
+  Also use when the user mentions X-COM modding, UFO Defense mods, or TFTD mods.
+allowed-tools:
+  - "Bash"
+  - "Read"
+  - "Write"
+  - "WebFetch"
 ---
 
 # OXCE Mod Generator
@@ -83,6 +89,10 @@ After validation passes, tell the user:
 - **Use STR_ prefix** for all type/name identifiers.
 - **Reuse existing sprite indices** when creating new items (bigSprite, floorSprite, handSprite). Pick a visually similar existing item's sprites.
 - **Always include extraStrings** when adding new items so they have display names.
+- **Place .rul files in the mod root directory**, not in a subfolder. The validator checks `*.rul` in the root and `Rulesets/*.rul` — root is simpler and preferred.
 - **One .rul file per mod** unless the mod is complex enough to warrant splitting.
 - **Default author** to "ModGen" unless the user specifies.
 - **Default version** to "1.0".
+- **Mod folder names must be safe** — only letters, digits, spaces, hyphens, underscores, and dots. No slashes or `..` sequences.
+- **costBuy vs costSell for alien weapons:** Vanilla alien weapons (plasma pistol, plasma rifle, heavy plasma) have no `costBuy` — they cannot be purchased, only recovered. "Make them more expensive" means adjusting `costSell` (sell price). Only human-manufactured items (laser weapons, craft) have `costBuy`.
+- **Trust fetched data over reference enums.** The damageType and battleType enum tables in the reference docs are approximate. When you fetch the vanilla .rul file, use the actual damageType value from that data for the weapon category you're modifying. For example, if vanilla laser weapons show `damageType: 4` in the fetched data, use 4 — not whatever the enum table says laser should be.

@@ -2,24 +2,21 @@
 
 ## Mod Folder Layout
 
-A minimal mod requires only two files:
+A minimal mod is just two files — metadata plus a single ruleset:
 
 ```
 my-mod/
-├── metadata.yml          # Required: mod identity and compatibility
-└── Ruleset/
-    └── mod.rul           # At least one ruleset file
+├── metadata.yml    # Required: mod identity and compatibility
+└── my-mod.rul      # At least one .rul file (root level preferred)
 ```
 
-A more complete layout:
+For complex mods, you can split rulesets and add resources:
 
 ```
 my-mod/
 ├── metadata.yml
-├── Ruleset/
-│   ├── items.rul
-│   ├── research.rul
-│   └── strings.rul
+├── items.rul
+├── research.rul
 ├── Resources/
 │   ├── Sprites/
 │   └── Sound/
@@ -28,7 +25,7 @@ my-mod/
     └── fr-FR.yml
 ```
 
-Ruleset files use `.rul` extension and contain YAML. Multiple `.rul` files in `Ruleset/` are all loaded and merged. File load order within a mod is alphabetical; mods load in dependency order.
+Ruleset files use `.rul` extension and contain YAML. Place `.rul` files in the mod root (preferred) or in a `Rulesets/` subfolder. Multiple `.rul` files are all loaded and merged. File load order within a mod is alphabetical; mods load in dependency order.
 
 ---
 
@@ -76,6 +73,8 @@ items:
 This leaves all other laser pistol properties (power, accuracy, sprites, etc.) at their vanilla values. OXCE performs a deep merge keyed on `type`.
 
 __Exceptions:__ A few list-typed fields replace rather than merge (e.g. `requires`, `requiresBuy`). When in doubt, include the full list.
+
+__costBuy vs costSell:__ Alien weapons (plasma pistol, plasma rifle, heavy plasma, etc.) have `costBuy: 0` in vanilla — they cannot be purchased, only recovered from missions. They only have a `costSell` value. Human-manufactured items (laser weapons, personal armor, craft) have `costBuy` for purchase price. When the user says "make weapons more expensive," determine whether they mean purchase price (costBuy, human tech) or sell value (costSell, alien tech).
 
 ---
 
@@ -149,7 +148,7 @@ startingConditions
 
 ## Damage Type Enum
 
-Used in `items[].damageType`:
+Used in `items[].damageType`. __Note:__ Always verify damageType values against the fetched vanilla .rul data rather than relying solely on this table — the actual values in the game data are authoritative.
 
 | Value | Name |
 |---|---|
