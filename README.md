@@ -46,6 +46,20 @@ Generated mods are written to `~/oxce-mods/<mod-name>/`. Copy the folder to your
 - Economy rebalancing
 - QoL tweaks
 
+## Known Limitations
+
+__Out of scope — these mod types require custom assets or deep engine knowledge:__
+- Custom sprites, sounds, or map tiles (the generator reuses existing asset indices)
+- Y-Script scripting hooks (OXCE's custom scripting language)
+- Total conversions (too large for a single skill invocation)
+- Mod compatibility checking (would require loading other mods to detect conflicts)
+
+__Known issues:__
+- __Fetch URLs may 404 on branch restructures.__ The skill fetches vanilla stats from the `oxce-plus` branch on GitHub. If the OXCE repo restructures its `bin/standard/` directory, fetches will fail. The skill handles this gracefully (asks user for manual values) but won't auto-recover.
+- __damageType enum in reference docs is approximate.__ The actual values in OXCE's data files may differ from the enum table. The skill prioritizes fetched data over the reference doc, but if fetching fails, the enum could mislead.
+- __No OXCE-extension-specific validation.__ OXCE adds keys beyond vanilla (e.g., `categories`, `tags`, `compatibleAmmo`, `attraction`). The validator accepts these silently but doesn't verify their structure.
+- __Single-master mods only.__ Generated mods target either `xcom1` or `xcom2`, not both. Cross-game mods require manual editing.
+
 ## Requirements
 
 - Claude Code

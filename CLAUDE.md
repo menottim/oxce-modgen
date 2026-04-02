@@ -23,6 +23,22 @@ __Validate a mod folder:__
 python scripts/validate_mod.py <path-to-mod-folder>
 ```
 
+## Documentation Maintenance (MUST FOLLOW)
+
+When making changes to the skill, validation script, or reference docs, you MUST update the relevant documentation in the same commit:
+
+| Change type | Documents to update |
+|-------------|-------------------|
+| New mod type supported | README.md "Supported Mod Types" section |
+| New limitation discovered | README.md "Known Limitations" section |
+| Limitation fixed/resolved | README.md "Known Limitations" — remove or update the entry |
+| Fetch URL changes | README.md if user-facing, SKILL.md, mod-structure.md |
+| Validation rules added/changed | README.md "Known Limitations" if it affects what users can do |
+| New OXCE features supported | README.md "Supported Mod Types", common-patterns.md |
+| Bug fix | README.md "Known Limitations" — remove the issue if resolved |
+
+__README.md__ is the public-facing introduction — keep the supported mod types, limitations, and usage examples current.
+
 ## Architecture
 
 - `skills/modgen/SKILL.md` — Main skill invoked via `/modgen`
