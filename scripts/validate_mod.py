@@ -15,6 +15,7 @@ Exit 0: all checks pass
 Exit 1: validation errors (printed to stderr)
 """
 
+import re
 import sys
 from pathlib import Path
 
@@ -33,6 +34,7 @@ KNOWN_SECTIONS = {
 
 REQUIRED_METADATA = {"name", "version", "description", "author", "master"}
 VALID_MASTERS = {"xcom1", "xcom2"}
+SAFE_NAME_RE = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9 _\-\.]*$")
 
 
 def validate(mod_path: Path) -> list[str]:
@@ -58,6 +60,13 @@ def validate(mod_path: Path) -> list[str]:
     missing = REQUIRED_METADATA - set(metadata.keys())
     if missing:
         errors.append(f"metadata.yml missing required fields: {', '.join(sorted(missing))}")
+
+    name = metadata.get("name")
+    if name and isinstance(name, str) and not SAFE_NAME_RE.match(name):
+        errors.append(
+            f"metadata.yml name '{name}' contains unsafe characters. "
+            "Only letters, digits, spaces, hyphens, underscores, and dots are allowed."
+        )
 
     master = metadata.get("master")
     if master and master not in VALID_MASTERS:

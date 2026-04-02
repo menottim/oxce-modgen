@@ -48,6 +48,43 @@ class TestInvalidMods:
         assert "author" in result.stderr.lower() or "master" in result.stderr.lower()
 
 
+class TestNameSafety:
+    def test_path_traversal_in_name_fails(self, tmp_path):
+        (tmp_path / "metadata.yml").write_text(
+            'name: "../../etc/cron.d/evil"\nversion: "1.0"\n'
+            'description: "test"\nauthor: "test"\nmaster: xcom1\n'
+        )
+        (tmp_path / "items.rul").write_text(
+            "items:\n  - type: STR_TEST\n    costBuy: 100\n"
+        )
+        result = run_validator(tmp_path)
+        assert result.returncode == 1
+        assert "unsafe" in result.stderr.lower()
+
+    def test_slashes_in_name_fails(self, tmp_path):
+        (tmp_path / "metadata.yml").write_text(
+            'name: "my/mod"\nversion: "1.0"\n'
+            'description: "test"\nauthor: "test"\nmaster: xcom1\n'
+        )
+        (tmp_path / "items.rul").write_text(
+            "items:\n  - type: STR_TEST\n    costBuy: 100\n"
+        )
+        result = run_validator(tmp_path)
+        assert result.returncode == 1
+        assert "unsafe" in result.stderr.lower()
+
+    def test_safe_name_passes(self, tmp_path):
+        (tmp_path / "metadata.yml").write_text(
+            'name: "My Cool Mod v2.1"\nversion: "1.0"\n'
+            'description: "test"\nauthor: "test"\nmaster: xcom1\n'
+        )
+        (tmp_path / "items.rul").write_text(
+            "items:\n  - type: STR_TEST\n    costBuy: 100\n"
+        )
+        result = run_validator(tmp_path)
+        assert result.returncode == 0
+
+
 class TestEdgeCases:
     def test_nonexistent_path_fails(self):
         result = run_validator(Path("/tmp/nonexistent-oxce-mod-abc123"))
