@@ -1,0 +1,10 @@
+{
+  "name": "oxce-modgen",
+  "version": "0.1.0",
+  "description": "Generate installable OpenXcom Extended (OXCE) mods from natural language descriptions. Fetches live vanilla game data, generates YAML rulesets, and validates output.",
+  "author": {
+    "name": "Menotti Minutillo",
+    "email": "menottim@users.noreply.github.com"
+  },
+  "keywords": ["openxcom", "oxce", "modding", "game-mods", "yaml"]
+}
