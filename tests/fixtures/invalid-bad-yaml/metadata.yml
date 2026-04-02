@@ -1,0 +1,5 @@
+name: "Bad YAML Mod"
+version: "1.0"
+description: "Has a broken rul file"
+author: "Test Author"
+master: xcom1

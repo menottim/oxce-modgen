@@ -1,0 +1,5 @@
+name: "Unknown Section"
+version: "1.0"
+description: "Has an unrecognized ruleset section"
+author: "Test Author"
+master: xcom1

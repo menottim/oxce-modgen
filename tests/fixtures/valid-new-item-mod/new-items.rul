@@ -1,0 +1,38 @@
+items:
+  - type: STR_PLASMA_SNIPER
+    costBuy: 80000
+    costSell: 60000
+    weight: 12
+    bigSprite: 32
+    floorSprite: 32
+    handSprite: 96
+    bulletSprite: 8
+    fireSound: 18
+    hitSound: 19
+    hitAnimation: 46
+    power: 80
+    damageType: 4
+    accuracySnap: 50
+    accuracyAimed: 120
+    tuSnap: 40
+    tuAimed: 70
+    clipSize: -1
+    battleType: 1
+    twoHanded: true
+    invWidth: 1
+    invHeight: 3
+    requires:
+      - STR_PLASMA_SNIPER
+
+research:
+  - name: STR_PLASMA_SNIPER
+    cost: 500
+    points: 25
+    dependencies:
+      - STR_PLASMA_RIFLE
+
+extraStrings:
+  - type: en-US
+    strings:
+      STR_PLASMA_SNIPER: "Plasma Sniper Rifle"
+      STR_PLASMA_SNIPER_UFOPEDIA: "A long-range plasma weapon designed for precision strikes."

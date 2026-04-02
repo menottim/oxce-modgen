@@ -1,0 +1,3 @@
+weapons:
+  - type: STR_LASER_RIFLE
+    costBuy: 25000

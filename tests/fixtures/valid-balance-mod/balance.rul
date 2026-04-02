@@ -1,0 +1,10 @@
+items:
+  - type: STR_PLASMA_RIFLE
+    costBuy: 73800
+    costSell: 55350
+    accuracySnap: 92
+    accuracyAimed: 110
+  - type: STR_HEAVY_PLASMA
+    costBuy: 122000
+    accuracySnap: 78
+    accuracyAimed: 105
