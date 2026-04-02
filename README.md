@@ -2,6 +2,16 @@
 
 A Claude Code skill for generating [OpenXcom Extended (OXCE)](https://github.com/MeridianOXC/OpenXcom) mods from natural language descriptions.
 
+## Table of Contents
+
+- [Background](#background)
+- [What It Does](#what-it-does)
+- [Install](#install)
+- [Usage](#usage)
+- [Supported Mod Types](#supported-mod-types)
+- [Known Limitations](#known-limitations)
+- [Requirements](#requirements)
+
 ## Background
 
 [OpenXcom](https://github.com/MeridianOXC/OpenXcom) is an open-source reimplementation of the classic 1994 strategy games __UFO: Enemy Unknown__ and __X-COM: Terror From The Deep__. The Extended (OXCE) fork adds a massive data-driven modding layer — most game behavior is controlled by YAML rulesets that can be overridden without touching C++.

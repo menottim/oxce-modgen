@@ -36,6 +36,7 @@ When making changes to the skill, validation script, or reference docs, you MUST
 | Validation rules added/changed | README.md "Known Limitations" if it affects what users can do |
 | New OXCE features supported | README.md "Supported Mod Types", common-patterns.md |
 | Bug fix | README.md "Known Limitations" — remove the issue if resolved |
+| New/renamed README section | README.md "Table of Contents" — update links to match |
 
 __README.md__ is the public-facing introduction — keep the supported mod types, limitations, and usage examples current.
 
